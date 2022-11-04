@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -24,4 +23,12 @@ hs_err_pid*
 /build/
 /target/
 
+#Classpath
+.classpath
+
+#Project
+.project
+
+#Settings
+.settings/org.eclipse.wst.common.project.facet.core.xml
 .settings/
