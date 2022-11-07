@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+body{
+	height: 100vh;
+	margin:0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: oblique;
+	
+}
+
+.site_wrap{
+	background-color: #FEF9E7; 
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr 0.5fr;
+    grid-template-areas: 
+    "title"
+    "form"
+    "signIn"
+    "footer";
+	
+}
+
+.title{
+	text-align: center;
+	background-color: #FEF9E7; 
+	color: black;
+	font-size: 2em;
+}
+
+.title h1{
+	padding-top: 3%;
+}
+
+.form{
+	text-align: center;
+	font-size: 2em;
+}
+
+.form label{
+	margin-bottom: 10px;
+}
+
+.form input{
+	margin-bottom: 20px; 
+	padding-left:5px;
+	border-radius: 5px;
+	width: 60%;
+  	height:40px;
+}
+
+input:focus{
+	background-color: #E5E8E8;
+}
+
+.form button{
+	border-radius: 5px;
+	border-color:#D7DBDD;
+	margin-bottom: 5px; 
+	width: 60%;
+  	height:50px;
+  	background-color: #A9CCE3;
+  	font-size:1em;
+  	color:white;
+}
+
+button:hover{
+	cursor: pointer;
+	background-color:#C39BD3;
+}
+
+.signIn{
+	text-align: center;
+	font-size:1.5em;
+}
+
+.footer{
+	text-align: center;
+}
