@@ -73,8 +73,10 @@ button:hover{
 .signIn{
 	text-align: center;
 	font-size:1.5em;
+	background-color: #FEF9E7;
 }
 
 .footer{
 	text-align: center;
+	background-color: #A9CCE3;
 }
