@@ -3,8 +3,17 @@ package com.jacaranda.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "USERS")
 public class User {
-	private int id; // es asignado por la base de datos 
+	@Id
+	@Column (name = "us_id")
+	private int id; //is assigned by the data base by auto increment
 	private String userName;
 	private String password;
 	private String name;
@@ -13,13 +22,25 @@ public class User {
 	private char sex;
 	private boolean admin;
 	
-	
+	/**
+	 * Empty constructor 
+	 */
 	public User() {
 		super();
 		
 	}
 
-
+	/**
+	 * Constructor with all parameters but the id which is set by the data base 
+	 * @param userName - user's name
+	 * @param password - user's password 
+	 * @param name - user's first name 
+	 * @param lastname - user's last name
+	 * @param dob - user's date of birth
+	 * @param sex - user's sex (female 'M', male 'H')
+	 * @param admin - user's role (true:admin false:user)
+	 * @throws UserException in case the parameters don't meet the specification
+	 */
 	public User(String userName, String password, String name, String lastname, LocalDate dob, char sex,
 			boolean admin) throws UserException {
 		super();
@@ -48,9 +69,9 @@ public class User {
 	}
 
 	/**
-	 * método para asignar el nombre de usuario 
-	 * @param userName nombre de usuario 
-	 * Lanza una UserException si el parametro que recibe es nulo, tiene más de 20 caracteres o son solo espacios en blanco 
+	 * Method that sets the userName 
+	 * @param userName - user's nickname 
+	 * throws an exception if the parameter is null, has more than 20 characters or is blank 
 	 */
 	public void setUserName(String userName) throws UserException {
 		if(userName == null || userName.length() > 20 || userName.isBlank()) {
@@ -76,6 +97,11 @@ public class User {
 	}
 
 
+	/**
+	 * Method which sets the user's first name
+	 * @param name - user's first name
+	 * @throws UserException - In case the name is null or blank
+	 */
 	public void setName(String name) throws UserException {
 		if(name == null || name.isBlank()) {
 			throw new UserException("El nombre no puede estar vacío.");
@@ -90,6 +116,11 @@ public class User {
 	}
 
 
+	/**
+	 * Method which sets the user's last name
+	 * @param lastname - user's last name
+	 * @throws UserException - In case the last name is null or blank
+	 */
 	public void setLastname(String lastname) throws UserException {
 		if(lastname == null || lastname.isBlank()) {
 			throw new UserException("El apellido no puede estar vacío.");
@@ -103,6 +134,11 @@ public class User {
 	}
 
 
+	/**
+	 * Method that sets the date of birth of the user
+	 * @param dob - date of birth 
+	 * @throws UserException in case the date is after today
+	 */
 	public void setDob(LocalDate dob) throws UserException {
 		if(dob.isAfter(LocalDate.now())) {
 			throw new UserException("La fecha de nacimiento no puede ser mayor a la fecha actual.");
@@ -116,7 +152,11 @@ public class User {
 		return sex;
 	}
 
-
+	/**
+	 * Method that sets the user's sex
+	 * @param sex - user's sex
+	 * @throws UserException in case the character differs from 'M' female of 'H' male
+	 */
 	public void setSex(char sex) throws UserException {
 		if(Character.toUpperCase(sex) != 'M' && Character.toUpperCase(sex)!= 'H') {
 			throw new UserException("El valor del sexo introducido no es válido.");
