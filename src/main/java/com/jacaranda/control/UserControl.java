@@ -20,7 +20,7 @@ public class UserControl {
 		User user = null;
 		
 		Session session = ConnectionDB.getSession();
-		Query<User> query = session.createQuery("SELECT u FROM com.jacaranda.model.User u WHERE u.userName LIKE " + userName);
+		Query<User> query = session.createQuery("SELECT u FROM com.jacaranda.model.User u WHERE u.userName LIKE '" +  userName + "'");
 		user = query.getSingleResult();
 		
 		return user;		
@@ -49,7 +49,6 @@ public class UserControl {
 	public static boolean addUser(String userName, String password, String name, String lastname, LocalDate dob, char sex,
 			boolean admin) throws UserControlException {
 		boolean result = false;
-		
 		Session session = ConnectionDB.getSession();
 		
 		try {
@@ -101,8 +100,7 @@ public class UserControl {
 		try {
 			User existUser = getUserByUserName(userName);
 			
-			if (existUser != null) {
-				existUser.getPassword().equals(password);
+			if (existUser.getPassword().equals(password)) {
 				result = existUser;
 			}
 			

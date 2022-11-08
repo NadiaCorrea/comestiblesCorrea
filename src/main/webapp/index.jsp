@@ -14,7 +14,7 @@
 	<h1>Comestibles Correa</h1>
 	</div>
 	<div class="form">
-		<form action="/login" method="post">
+		<form action="LoginServlet" method="post">
 			
 			<label for="userName">Usuario: </label><br>
 			<input type="text" id="userName" name="userName" minlenght="2" maxlength="20" required><br>

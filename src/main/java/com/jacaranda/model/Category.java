@@ -1,6 +1,7 @@
 package com.jacaranda.model;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ public class Category {
 	private String name;
 	private String description;
 	@OneToMany(mappedBy ="category", cascade = CascadeType.ALL, orphanRemoval = true) 
-	private ArrayList<Element> elements;
+	private List<Element> elements;
 	
 	/**
 	 * Empty constructor
@@ -72,6 +73,22 @@ public class Category {
 			this.description = description;
 		}
 		
+	}
+
+	public int getCatId() {
+		return catId;
+	}
+
+	public void setCatId(int catId) {
+		this.catId = catId;
+	}
+
+	public List<Element> getElements() {
+		return elements;
+	}
+
+	public void setElements(List<Element> elements) {
+		this.elements = elements;
 	}
 	
 }
