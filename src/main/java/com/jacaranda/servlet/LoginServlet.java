@@ -19,13 +19,32 @@ import com.jacaranda.model.User;
 @WebServlet(description = "Servlet for login", urlPatterns = { "/LoginServlet" })
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String INVALID_CREDENTIALS = "<!DOCTYPE html>\r\n" + "<html lang=\"en\">\r\n" + "<head>\r\n"
+	
+	private static final String HTML_PART1 = "<!DOCTYPE html>\r\n"
+			+ "<html lang=\"en\">\r\n"
+			+ "<head>\r\n"
 			+ "    <meta charset=\"UTF-8\">\r\n"
 			+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
 			+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
-			+ "    <title>Error</title>\r\n" + "</head>\r\n" + "<body>\r\n"
-			+ "<h1>El usuario o la contraseña no son válidos.</h1>\r\n" + "</body>\r\n" + "</html>";
-
+			+ "    <title>Confirmación de acceso</title>\r\n"
+			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/error.css\">\r\n"
+			+ "</head>\r\n"
+			+ "<body>\r\n"
+			+ "\r\n"
+			+ "    <div class=\"site_wrap\">\r\n"
+			+ "        <div class=\"title\">\r\n"
+			+ "        <h1>Comestibles Correa</h1>\r\n"
+			+ "        </div>\r\n"
+			+ "        <div class=\"error\">";
+	
+	private static final String HTML_PART2 = "</div>\r\n"
+			+ "        <div class= \"footer\">\r\n"
+			+ "        <p>&copy; Comestibles Correa</p>\r\n"
+			+ "        </div>\r\n"
+			+ "    </div>\r\n"
+			+ "    \r\n"
+			+ "</body>\r\n"
+			+ "</html>";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -69,12 +88,12 @@ public class LoginServlet extends HttpServlet {
 							+ "<h1>Bienvenido</h1>\r\n" + "</body>\r\n" + "</html>");
 			} else {
 				response.getWriter()
-				.append(INVALID_CREDENTIALS);
+				.append(HTML_PART1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_PART2);
 			}
 		} catch (UserControlException e) {
 
 			response.getWriter()
-					.append(INVALID_CREDENTIALS);
+			.append(HTML_PART1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_PART2);
 		}
 
 	}
