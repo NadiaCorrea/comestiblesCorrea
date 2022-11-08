@@ -30,7 +30,7 @@ GRANT ALL PRIVILEGES ON comestiblesCorrea.* to 'correa'@'%';
 -- Estructura de tabla para la tabla `CATEGORIES`
 --
 
-CREATE TABLE `CATEGORIES` (
+CREATE TABLE comestiblesCorrea.`CATEGORIES` (
   `cat_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(200) DEFAULT NULL
@@ -40,7 +40,7 @@ CREATE TABLE `CATEGORIES` (
 -- Volcado de datos para la tabla `CATEGORIES`
 --
 
-INSERT INTO `CATEGORIES` (`cat_id`, `name`, `description`) VALUES
+INSERT INTO comestiblesCorrea.`CATEGORIES` (`cat_id`, `name`, `description`) VALUES
 (1, 'frutas', 'frutas varias'),
 (2, 'verduras', 'verduras varias'),
 (3, 'conservas', 'productos en conserva varios'),
@@ -61,7 +61,7 @@ INSERT INTO `CATEGORIES` (`cat_id`, `name`, `description`) VALUES
 -- Estructura de tabla para la tabla `ELEMENTS`
 --
 
-CREATE TABLE `ELEMENTS` (
+CREATE TABLE comestiblesCorrea.`ELEMENTS` (
   `ele_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE `ELEMENTS` (
 -- Volcado de datos para la tabla `ELEMENTS`
 --
 
-INSERT INTO `ELEMENTS` (`ele_id`, `name`, `description`, `price`, `category`) VALUES
+INSERT INTO comestiblesCorrea.`ELEMENTS` (`ele_id`, `name`, `description`, `price`, `category`) VALUES
 (1, 'Asparagus - White, Canned', 'platea dictumst', 3.09, 1),
 (2, 'Food Colouring - Blue', 'nisl duis bibendum', 2.6, 10),
 (3, 'Soup - Campbells, Chix Gumbo', 'ultrices erat tortor sollicitudin mi', 3.6, 8),
@@ -181,7 +181,7 @@ INSERT INTO `ELEMENTS` (`ele_id`, `name`, `description`, `price`, `category`) VA
 -- Estructura de tabla para la tabla `SALES`
 --
 
-CREATE TABLE `SALES` (
+CREATE TABLE comestiblesCorrea.`SALES` (
   `ele_id` int(11) NOT NULL,
   `us_id` int(11) NOT NULL,
   `salesDate` datetime NOT NULL,
@@ -193,7 +193,7 @@ CREATE TABLE `SALES` (
 -- Volcado de datos para la tabla `SALES`
 --
 
-INSERT INTO `SALES` (`ele_id`, `us_id`, `salesDate`, `quantity`, `price`) VALUES
+INSERT INTO comestiblesCorrea.`SALES` (`ele_id`, `us_id`, `salesDate`, `quantity`, `price`) VALUES
 (1, 3, '2022-04-10 12:45:56', 3, 3.09),
 (5, 2, '2022-04-10 12:47:20', 1, 8.31),
 (14, 2, '2022-04-10 12:47:20', 1, 8.42);
@@ -204,7 +204,7 @@ INSERT INTO `SALES` (`ele_id`, `us_id`, `salesDate`, `quantity`, `price`) VALUES
 -- Estructura de tabla para la tabla `USERS`
 --
 
-CREATE TABLE `USERS` (
+CREATE TABLE comestiblesCorrea.`USERS` (
   `us_id` int(11) NOT NULL,
   `userName` varchar(20) NOT NULL,
   `password` varchar(32) DEFAULT NULL,
@@ -219,7 +219,7 @@ CREATE TABLE `USERS` (
 -- Volcado de datos para la tabla `USERS`
 --
 
-INSERT INTO `USERS` (`us_id`, `userName`, `password`, `name`, `lastname`, `dob`, `sex`, `admin`) VALUES
+INSERT INTO comestiblesCorrea.`USERS` (`us_id`, `userName`, `password`, `name`, `lastname`, `dob`, `sex`, `admin`) VALUES
 (1, 'Nash', 'a9b69ae1a4c3491d2dbf5eae94f5c041', 'Nadia', 'Correa', '1984-09-29', 'M', 0),
 (2, 'Pcaro', '487b5d4113bb0b62a558679bd761594f', 'Pedro', 'Caro', '1982-09-03', 'H', 0),
 (3, 'Charlottie', '0719c04224aa7d436156124c06f5c304', 'Charlotte', 'Caro', '2011-02-08', 'M', 0),
@@ -232,28 +232,28 @@ INSERT INTO `USERS` (`us_id`, `userName`, `password`, `name`, `lastname`, `dob`,
 --
 -- Indices de la tabla `CATEGORIES`
 --
-ALTER TABLE `CATEGORIES`
+ALTER TABLE comestiblesCorrea.`CATEGORIES`
   ADD PRIMARY KEY (`cat_id`);
 
 --
 -- Indices de la tabla `ELEMENTS`
 --
-ALTER TABLE `ELEMENTS`
+ALTER TABLE comestiblesCorrea.`ELEMENTS`
   ADD PRIMARY KEY (`ele_id`),
   ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `fk_elemenys` (`category`);
+  ADD KEY `fk_elements` (`category`);
 
 --
 -- Indices de la tabla `SALES`
 --
-ALTER TABLE `SALES`
+ALTER TABLE comestiblesCorrea.`SALES`
   ADD PRIMARY KEY (`ele_id`,`us_id`,`salesDate`),
   ADD KEY `fk2_sales` (`us_id`);
 
 --
 -- Indices de la tabla `USERS`
 --
-ALTER TABLE `USERS`
+ALTER TABLE comestiblesCorrea.`USERS`
   ADD PRIMARY KEY (`us_id`),
   ADD UNIQUE KEY `userName` (`userName`);
 
@@ -264,19 +264,19 @@ ALTER TABLE `USERS`
 --
 -- AUTO_INCREMENT de la tabla `CATEGORIES`
 --
-ALTER TABLE `CATEGORIES`
+ALTER TABLE comestiblesCorrea.`CATEGORIES`
   MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `ELEMENTS`
 --
-ALTER TABLE `ELEMENTS`
+ALTER TABLE comestiblesCorrea.`ELEMENTS`
   MODIFY `ele_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT de la tabla `USERS`
 --
-ALTER TABLE `USERS`
+ALTER TABLE comestiblesCorrea.`USERS`
   MODIFY `us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -286,13 +286,13 @@ ALTER TABLE `USERS`
 --
 -- Filtros para la tabla `ELEMENTS`
 --
-ALTER TABLE `ELEMENTS`
-  ADD CONSTRAINT `fk_elemenys` FOREIGN KEY (`category`) REFERENCES `CATEGORIES` (`cat_id`);
+ALTER TABLE comestiblesCorrea.`ELEMENTS`
+  ADD CONSTRAINT `fk_elements` FOREIGN KEY (`category`) REFERENCES `CATEGORIES` (`cat_id`);
 
 --
 -- Filtros para la tabla `SALES`
 --
-ALTER TABLE `SALES`
+ALTER TABLE comestiblesCorrea.`SALES`
   ADD CONSTRAINT `fk1_sales` FOREIGN KEY (`ele_id`) REFERENCES `ELEMENTS` (`ele_id`),
   ADD CONSTRAINT `fk2_sales` FOREIGN KEY (`us_id`) REFERENCES `USERS` (`us_id`);
 COMMIT;
