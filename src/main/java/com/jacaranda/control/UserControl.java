@@ -46,9 +46,9 @@ public class UserControl {
 	
 	}
 	
-	public static boolean addUser(String userName, String password, String name, String lastname, LocalDate dob, char sex,
+	public static int addUser(String userName, String password, String name, String lastname, LocalDate dob, char sex,
 			boolean admin) throws UserControlException {
-		boolean result = false;
+		int result = -1;
 		Session session = ConnectionDB.getSession();
 		
 		try {
@@ -61,7 +61,7 @@ public class UserControl {
 				session.save(newUser);
 				session.getTransaction().commit();
 
-				result = true;
+				result = newUser.getId();
 			}
 			
 		} catch (Exception e) {
