@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Registro de usuarios</title>
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="CSS/signIn.css">
 <script>
 	function TDate() {
 		var today = new Date();
@@ -48,26 +48,20 @@
 			<input type="date" id="dob" name="dob" min='1899-01-01' max='2000-13-13' onclick="TDate()" required><br>
 			
 			<label for="sex">Sexo: </label><br>
-			Hombre <input type="radio" id="sex" name="sex" value="H" required><br>
-			Mujer <input type="radio" id="sex" name="sex" value="M"><br>
+			<input type="radio" id="sex" name="sex" value="M">Mujer <br>
+			<input type="radio" id="sex" name="sex" value="H" required>Hombre <br>
 			
-			<input type="hidden" id="admin" name="admin" value="0"><br>
 			
-			<button type="submit" id="sigIn">Registarse</button>
+
+			<button type="submit" id="sigIn">Registrarse</button>
 		</form>
 	</div>
+	<div class="back">
+         <a href="index.jsp">Volver</a>
+     </div>
 	<div class= "footer">
 	<p>&copy; Comestibles Correa</p>
 	</div>
 </div>
 </body>
 </html>
-
-	<!--
-  `userName` varchar(20) NOT NULL,
-  `password` varchar(32) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `lastname` varchar(100) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
-  `sex` char(1) DEFAULT NULL,
-  `admin` tinyint(1) DEFAULT NULL -->

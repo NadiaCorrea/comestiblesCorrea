@@ -37,12 +37,14 @@ public class LoginServlet extends HttpServlet {
 			+ "        </div>\r\n"
 			+ "        <div class=\"error\">";
 	
-	private static final String HTML_PART2 = "</div>\r\n"
+	private static final String HTML_PART2 =  "</div>\r\n"
+			+ "        <div class=\"back\">\r\n"
+			+ "            <a href=\"index.jsp\">Volver al inicio</a>\r\n"
+			+ "        </div>\r\n"
 			+ "        <div class= \"footer\">\r\n"
 			+ "        <p>&copy; Comestibles Correa</p>\r\n"
 			+ "        </div>\r\n"
 			+ "    </div>\r\n"
-			+ "    \r\n"
 			+ "</body>\r\n"
 			+ "</html>";
 	/**

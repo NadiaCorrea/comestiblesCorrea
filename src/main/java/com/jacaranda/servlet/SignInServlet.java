@@ -41,11 +41,13 @@ public class SignInServlet extends HttpServlet {
 			+ "        <div class=\"error\">";
        
 	private static final String HTML_ERROR2 = "</div>\r\n"
+			+ "        <div class=\"back\">\r\n"
+			+ "            <a href=\"index.jsp\">Volver al inicio</a>\r\n"
+			+ "        </div>\r\n"
 			+ "        <div class= \"footer\">\r\n"
 			+ "        <p>&copy; Comestibles Correa</p>\r\n"
 			+ "        </div>\r\n"
 			+ "    </div>\r\n"
-			+ "    \r\n"
 			+ "</body>\r\n"
 			+ "</html>";
 	
@@ -76,21 +78,17 @@ public class SignInServlet extends HttpServlet {
 		String lastname = request.getParameter("lastname");
 		LocalDate dob = LocalDate.parse(request.getParameter("dob"));
 		char sex = request.getParameter("sex").charAt(0);
-		int adminInt = Integer.parseInt(request.getParameter("admin"));
 		
 		String encriptedPassword = DigestUtils.md5Hex(password);
 		boolean admin = false;
-		if (adminInt == 1) {
-			admin = true;
-		}
+		
 	
 		response.setContentType("text/html");
 		
 		try {
-			int newUserId = UserControl.addUser(userName, encriptedPassword, name, lastname, dob, sex, admin);
+			User newUser = UserControl.addUser(userName, encriptedPassword, name, lastname, dob, sex, admin);
 			
-			
-			if (newUserId != -1) {
+			if (newUser != null) {
 				//usuario creado - llevar a listado
 				response.getWriter().append(HTML_ERROR1 + "<h3>bienvenido</h3>" + HTML_ERROR2);
 			} else {

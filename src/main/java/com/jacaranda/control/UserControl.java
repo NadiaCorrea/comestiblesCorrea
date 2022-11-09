@@ -19,9 +19,14 @@ public class UserControl {
 	private static User getUserByUserName(String userName) {
 		User user = null;
 		
-		Session session = ConnectionDB.getSession();
-		Query<User> query = session.createQuery("SELECT u FROM com.jacaranda.model.User u WHERE u.userName LIKE '" +  userName + "'");
-		user = query.getSingleResult();
+		try {
+			Session session = ConnectionDB.getSession();
+			Query<User> query = session.createQuery("SELECT u FROM com.jacaranda.model.User u WHERE u.userName LIKE '" +  userName + "'");
+			user = query.getSingleResult();
+			
+		} catch (Exception e) {
+			user = null;
+		}
 		
 		return user;		
 	}
@@ -46,9 +51,9 @@ public class UserControl {
 	
 	}
 	
-	public static int addUser(String userName, String password, String name, String lastname, LocalDate dob, char sex,
+	public static User addUser(String userName, String password, String name, String lastname, LocalDate dob, char sex,
 			boolean admin) throws UserControlException {
-		int result = -1;
+		User result = null;
 		Session session = ConnectionDB.getSession();
 		
 		try {
@@ -61,7 +66,7 @@ public class UserControl {
 				session.save(newUser);
 				session.getTransaction().commit();
 
-				result = newUser.getId();
+				result = newUser;
 			}
 			
 		} catch (Exception e) {
@@ -100,7 +105,7 @@ public class UserControl {
 		try {
 			User existUser = getUserByUserName(userName);
 			
-			if (existUser.getPassword().equals(password)) {
+			if (existUser != null && existUser.getPassword().equals(password)) {
 				result = existUser;
 			}
 			
