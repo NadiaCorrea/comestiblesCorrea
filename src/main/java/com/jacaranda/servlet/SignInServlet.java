@@ -21,8 +21,32 @@ import com.jacaranda.model.User;
 public class SignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String HTML_START = "";
-	private static final String HTML_END = "";
+	private static final String HTML_SUCCESS1 = "<!DOCTYPE html>\r\n"
+			+ "<html lang=\"en\">\r\n"
+			+ "<head>\r\n"
+			+ "    <meta charset=\"UTF-8\">\r\n"
+			+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
+			+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
+			+ "    <title>Confirmación de acceso</title>\r\n"
+			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/success.css\">\r\n"
+			+ "</head>\r\n"
+			+ "<body>\r\n"
+			+ "\r\n"
+			+ "    <div class=\"site_wrap\">\r\n"
+			+ "        <div class=\"title\">\r\n"
+			+ "        <h1>Comestibles Correa</h1>\r\n"
+			+ "        </div>\r\n"
+			+ "        <div class=\"success\">";
+	private static final String HTML_SUCCESS2 = "</div>\r\n"
+			+ "        <div class=\"back\">\r\n"
+			+ "            <a href=\"index.jsp\">Volver al inicio de sessión</a>\r\n"
+			+ "        </div>\r\n"
+			+ "        <div class= \"footer\">\r\n"
+			+ "        <p>&copy; Comestibles Correa</p>\r\n"
+			+ "        </div>\r\n"
+			+ "    </div>\r\n"
+			+ "</body>\r\n"
+			+ "</html>";
 	private static final String HTML_ERROR1 = "<!DOCTYPE html>\r\n"
 			+ "<html lang=\"en\">\r\n"
 			+ "<head>\r\n"
@@ -89,10 +113,10 @@ public class SignInServlet extends HttpServlet {
 			User newUser = UserControl.addUser(userName, encriptedPassword, name, lastname, dob, sex, admin);
 			
 			if (newUser != null) {
-				//usuario creado - llevar a listado
-				response.getWriter().append(HTML_ERROR1 + "<h3>bienvenido</h3>" + HTML_ERROR2);
+				//user is created
+				response.getWriter().append(HTML_SUCCESS1 + "<h3>¡Enhorabuena! Tu cuenta ha sido creada con éxito.</h3>" + HTML_SUCCESS2);
 			} else {
-				// error 
+				//error 
 				response.getWriter().append(HTML_ERROR1 + "<h3>El usuario ya existe.</h3>" + HTML_ERROR2);
 			}
 		} catch (Exception e) {
