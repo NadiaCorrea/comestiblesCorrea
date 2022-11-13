@@ -1,6 +1,7 @@
 package com.jacaranda.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ public class User {
 	private String password;
 	private String name;
 	private String lastname;
-	private LocalDate dob;
+	private LocalDateTime dob;
 	private char sex;
 	private boolean admin;
 	
@@ -41,7 +42,7 @@ public class User {
 	 * @param admin - user's role (true:admin false:user)
 	 * @throws UserException in case the parameters don't meet the specification
 	 */
-	public User(String userName, String password, String name, String lastname, LocalDate dob, char sex,
+	public User(String userName, String password, String name, String lastname, LocalDateTime dob, char sex,
 			boolean admin) throws UserException {
 		super();
 		setUserName(userName);
@@ -87,8 +88,13 @@ public class User {
 	}
 
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String password) throws UserException {
+		
+		if(password ==null || password.isBlank()) {
+			throw new UserException("La contraseña no puede estar vacío ni dejarse en blanco.");
+		} else {
+			this.password = password;
+		}
 	}
 
 
@@ -129,7 +135,7 @@ public class User {
 		}
 	}
 
-	public LocalDate getDob() {
+	public LocalDateTime getDob() {
 		return dob;
 	}
 
@@ -139,8 +145,8 @@ public class User {
 	 * @param dob - date of birth 
 	 * @throws UserException in case the date is after today
 	 */
-	public void setDob(LocalDate dob) throws UserException {
-		if(dob.isAfter(LocalDate.now())) {
+	public void setDob(LocalDateTime dob) throws UserException {
+		if(dob.isAfter(LocalDateTime.now())){
 			throw new UserException("La fecha de nacimiento no puede ser mayor a la fecha actual.");
 		} else {
 			this.dob = dob;

@@ -1,6 +1,6 @@
 package com.jacaranda.control;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -51,7 +51,7 @@ public class UserControl {
 	
 	}
 	
-	public static User addUser(String userName, String password, String name, String lastname, LocalDate dob, char sex,
+	public static User addUser(String userName, String password, String name, String lastname, LocalDateTime dob, char sex,
 			boolean admin) throws UserControlException {
 		User result = null;
 		Session session = ConnectionDB.getSession();

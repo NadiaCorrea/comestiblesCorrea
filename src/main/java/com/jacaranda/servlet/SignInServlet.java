@@ -2,6 +2,7 @@ package com.jacaranda.servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -91,25 +92,30 @@ public class SignInServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String lastname = request.getParameter("lastname");
-		LocalDate dob = LocalDate.parse(request.getParameter("dob"));
+		LocalDateTime dob = LocalDateTime.parse(request.getParameter("dob") + "T01:00:00");
 		char sex = request.getParameter("sex").charAt(0);
-		
-		String encriptedPassword = DigestUtils.md5Hex(password);
 		boolean admin = false;
 		
 	
 		response.setContentType("text/html");
 		
 		try {
-			User newUser = UserControl.addUser(userName, encriptedPassword, name, lastname, dob, sex, admin);
-			
-			if (newUser != null) {
-				//user is created
-				response.getWriter().append(HTML_SUCCESS1 + "<h3>¡Enhorabuena! Tu cuenta ha sido creada con éxito.</h3>" + HTML_SUCCESS2);
+			if (!password.isBlank()) {
+				String encriptedPassword = DigestUtils.md5Hex(password);
+				
+				User newUser = UserControl.addUser(userName, encriptedPassword, name, lastname, dob, sex, admin);
+				
+				if (newUser != null) {
+					//user is created
+					response.getWriter().append(HTML_SUCCESS1 + "<h3>¡Enhorabuena! Tu cuenta ha sido creada con éxito.</h3>" + HTML_SUCCESS2);
+				} else {
+					//error 
+					response.getWriter().append(HTML_ERROR1 + "<h3>El usuario ya existe.</h3>" + HTML_ERROR2);
+				}
 			} else {
-				//error 
-				response.getWriter().append(HTML_ERROR1 + "<h3>El usuario ya existe.</h3>" + HTML_ERROR2);
+				response.getWriter().append(HTML_ERROR1 + "<h3>La contrase&ntilde;a no puede estar vac&iacute;a.</h3>" + HTML_ERROR2);
 			}
+	
 		} catch (Exception e) {
 			response.getWriter().append(HTML_ERROR1 + "<h3>Ha ocurrido un error inesperado. Contacte con el administrador.</h3>" + HTML_ERROR2);
 		}

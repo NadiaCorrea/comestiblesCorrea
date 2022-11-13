@@ -17,9 +17,9 @@
 		<form action="LoginServlet" method="post">
 			
 			<label for="userName">Usuario: </label><br>
-			<input type="text" id="userName" name="userName" minlenght="2" maxlength="20" required><br>
+			<input type="text" id="userName" name="userName" minlength="2" maxlength="20" required><br>
 			<label for="password">Contraseña: </label><br>
-			<input type ="password" id="password" name="password" minlegnth="5" maxlength="15" required><br>
+			<input type ="password" id="password" name="password" minlength="5" maxlength="15" required><br>
 			<button type="submit" id="login">Iniciar Sesión</button>
 		</form>
 	</div>

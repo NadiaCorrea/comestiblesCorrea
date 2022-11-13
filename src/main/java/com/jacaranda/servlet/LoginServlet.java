@@ -20,62 +20,33 @@ import com.jacaranda.model.User;
 @WebServlet(description = "Servlet for login", urlPatterns = { "/LoginServlet" })
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private static final String HTML_SUCCESS1 = "<!DOCTYPE html>\r\n"
-			+ "<html lang=\"en\">\r\n"
-			+ "<head>\r\n"
-			+ "    <meta charset=\"UTF-8\">\r\n"
-			+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
+
+	private static final String HTML_SUCCESS1 = "<!DOCTYPE html>\r\n" + "<html lang=\"en\">\r\n" + "<head>\r\n"
+			+ "    <meta charset=\"UTF-8\">\r\n" + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
 			+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 			+ "    <title>Confirmación de acceso</title>\r\n"
-			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/listProducts.css\">\r\n"
-			+ "</head>\r\n"
-			+ "<body>\r\n"
-			+ "\r\n"
-			+ "    <div class=\"site_wrap\">\r\n"
-			+ "        <div class=\"title\">\r\n"
-			+ "        <h1>Comestibles Correa</h1>\r\n"
-			+ "        </div>\r\n"
-			+ "        <div class=\"session\">";
-	
-	private static final String HTML_SUCCESS2 = "</div>\r\n"
-			+ "        <div class=\"back\">\r\n"
-			+ "            <a href=\"index.jsp\">Volver al inicio</a>\r\n"
-			+ "        </div>\r\n"
-			+ "        <div class= \"footer\">\r\n"
-			+ "        <p>&copy; Comestibles Correa</p>\r\n"
-			+ "        </div>\r\n"
-			+ "    </div>\r\n"
-			+ "</body>\r\n"
-			+ "</html>";
-	
-	private static final String HTML_ERROR1 = "<!DOCTYPE html>\r\n"
-			+ "<html lang=\"en\">\r\n"
-			+ "<head>\r\n"
-			+ "    <meta charset=\"UTF-8\">\r\n"
-			+ "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
+			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/listProducts.css\">\r\n" + "</head>\r\n"
+			+ "<body>\r\n" + "\r\n" + "    <div class=\"site_wrap\">\r\n" + "        <div class=\"title\">\r\n"
+			+ "        <h1>Comestibles Correa</h1>\r\n" + "        </div>\r\n" + "        <div class=\"session\">";
+
+	private static final String HTML_SUCCESS2 = "</div>\r\n" + "        <div class=\"back\">\r\n"
+			+ "            <a href=\"index.jsp\">Volver al inicio</a>\r\n" + "        </div>\r\n"
+			+ "        <div class= \"footer\">\r\n" + "        <p>&copy; Comestibles Correa</p>\r\n"
+			+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>";
+
+	private static final String HTML_ERROR1 = "<!DOCTYPE html>\r\n" + "<html lang=\"en\">\r\n" + "<head>\r\n"
+			+ "    <meta charset=\"UTF-8\">\r\n" + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
 			+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 			+ "    <title>Confirmación de acceso</title>\r\n"
-			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/error.css\">\r\n"
-			+ "</head>\r\n"
-			+ "<body>\r\n"
-			+ "\r\n"
-			+ "    <div class=\"site_wrap\">\r\n"
-			+ "        <div class=\"title\">\r\n"
-			+ "        <h1>Comestibles Correa</h1>\r\n"
-			+ "        </div>\r\n"
-			+ "        <div class=\"error\">";
-	
-	private static final String HTML_ERROR2 =  "</div>\r\n"
-			+ "        <div class=\"back\">\r\n"
-			+ "            <a href=\"index.jsp\">Volver al inicio</a>\r\n"
-			+ "        </div>\r\n"
-			+ "        <div class= \"footer\">\r\n"
-			+ "        <p>&copy; Comestibles Correa</p>\r\n"
-			+ "        </div>\r\n"
-			+ "    </div>\r\n"
-			+ "</body>\r\n"
-			+ "</html>";
+			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/error.css\">\r\n" + "</head>\r\n"
+			+ "<body>\r\n" + "\r\n" + "    <div class=\"site_wrap\">\r\n" + "        <div class=\"title\">\r\n"
+			+ "        <h1>Comestibles Correa</h1>\r\n" + "        </div>\r\n" + "        <div class=\"error\">";
+
+	private static final String HTML_ERROR2 = "</div>\r\n" + "        <div class=\"back\">\r\n"
+			+ "            <a href=\"index.jsp\">Volver al inicio</a>\r\n" + "        </div>\r\n"
+			+ "        <div class= \"footer\">\r\n" + "        <p>&copy; Comestibles Correa</p>\r\n"
+			+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>";
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -92,27 +63,35 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
-		String encriptedPassword = DigestUtils.md5Hex(password);
-		response.setContentType("text/html");
 
 		try {
-			User user = UserControl.checkUser(userName, encriptedPassword);
-			
-			if(user != null) {
-				HttpSession session = request.getSession(true);
-				session.setAttribute("user", user.getName());
-				
-				response.getWriter()
-					.append(HTML_SUCCESS1
-							+ "<h1>Bienvenido " + session.getAttribute("user") + "</h1>\r\n" + HTML_SUCCESS2);
+
+			if (!password.isBlank() && !userName.isBlank()) {
+				String encriptedPassword = DigestUtils.md5Hex(password);
+				response.setContentType("text/html");
+
+				User user = UserControl.checkUser(userName, encriptedPassword);
+
+				if (user != null) {
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user", user.getName());
+
+					response.getWriter().append(HTML_SUCCESS1 + "<h1>Bienvenido " + session.getAttribute("user")
+							+ "</h1>\r\n" + HTML_SUCCESS2);
+				} else {
+					response.getWriter()
+							.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
+				}
+
 			} else {
 				response.getWriter()
-				.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
+				.append(HTML_ERROR1 + "<h3>La contrase&ntildea no puede estar vac&iacute;a.</h3>" + HTML_ERROR2);
 			}
+
 		} catch (UserControlException e) {
 
 			response.getWriter()
-			.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
+					.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
 		}
 
 	}

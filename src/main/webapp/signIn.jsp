@@ -33,16 +33,16 @@
 		<form action="SignInServlet" method="post">
 			
 			<label for="userName">Usuario: </label><br>
-			<input type="text" id="userName" name="userName" minlenght="2" maxlength="20" required><br>
+			<input type="text" id="userName" name="userName" minlength="2" maxlength="20" required><br>
 			
 			<label for="password">Contraseña: </label><br>
-			<input type ="password" id="password" name="password" minlegnth="5" maxlength="15" required><br>
+			<input type ="password" id="password" name="password" minlength="5" maxlength="15" required><br>
 
 			<label for="name">Nombre: </label><br>
-			<input type="text" id="name" name="name" minlenght="2" maxlength="100" required><br>
+			<input type="text" id="name" name="name" minlength="2" maxlength="100" required><br>
 			
 			<label for="lastname">Apellido: </label><br>
-			<input type="text" id="lastname" name="lastname" minlenght="2" maxlength="100" required><br>
+			<input type="text" id="lastname" name="lastname" minlength="2" maxlength="100" required><br>
 			
 			<label>Fecha de nacimiento: </label><br>
 			<input type="date" id="dob" name="dob" min='1899-01-01' max='2000-13-13' onclick="TDate()" required><br>
