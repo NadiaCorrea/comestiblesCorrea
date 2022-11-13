@@ -1,6 +1,9 @@
 package com.jacaranda.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import com.jacaranda.control.ElementControl;
 import com.jacaranda.control.UserControl;
 import com.jacaranda.control.UserControlException;
+import com.jacaranda.model.Element;
 import com.jacaranda.model.User;
 
 /**
@@ -75,9 +80,31 @@ public class LoginServlet extends HttpServlet {
 				if (user != null) {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("user", user.getName());
-
+					
+					List<Element> elements = ElementControl.getElements(); 
+					String htmlResult = "<table><tr><td>Nombre de producto</td><td>Descripción</td><td>Precio</td><td>Categoria</td></tr>";
+					
+					Iterator<Element> iterator = elements.iterator();
+					
+					while(iterator.hasNext()) {
+						Element iElement= iterator.next();
+						
+						htmlResult += "<tr id="+ iElement.getEleId() +">"
+								+ "<td>"+ iElement.getName() +"</td>"
+								+ "<td>"+ iElement.getDescription()+"</td>"
+								+ "<td>"+ iElement.getPrice()+"</td>"
+								+ "<td>"+ iElement.getCategory().getName()+"</td>"
+								+ "</tr>";
+					}
+					
 					response.getWriter().append(HTML_SUCCESS1 + "<h1>Bienvenido " + session.getAttribute("user")
-							+ "</h1>\r\n" + HTML_SUCCESS2);
+							+ "</h1>\r\n"
+							+ getAddButton(user.isAdmin())
+							+ "</div>" 
+							+ "<div class = table>"
+							+ htmlResult 
+							+ "</table>"
+							+ HTML_SUCCESS2);
 				} else {
 					response.getWriter()
 							.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
@@ -94,6 +121,15 @@ public class LoginServlet extends HttpServlet {
 					.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
 		}
 
+	}
+
+	private String getAddButton(boolean admin) {
+		String result = "";
+		if (admin) {
+			result = "<a href='addProduct.jsp'>Añadir producto</a>";
+		}
+		
+		return result;
 	}
 
 }

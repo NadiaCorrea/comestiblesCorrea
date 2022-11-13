@@ -101,5 +101,15 @@ public class Element {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
+	public int getEleId() {
+		return eleId;
+	}
+
+	public void setEleId(int eleId) {
+		this.eleId = eleId;
+	}
+	
+	
 	
 }
