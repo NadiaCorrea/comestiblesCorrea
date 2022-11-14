@@ -15,7 +15,7 @@ public class ElementControl {
 		
 	}
 
-	public static ArrayList<Element> getElements() {
+	public static ArrayList<Element> getElements() throws ConnectionDBException {
 		ArrayList<Element> elements = null; 
 		
 		Session session = ConnectionDB.getSession();
@@ -25,7 +25,7 @@ public class ElementControl {
 		return elements;
 	}
 	
-	public static Element getElement(int id) {
+	public static Element getElement(int id) throws ConnectionDBException {
 		Element ele = null; 
 		
 		Session session = ConnectionDB.getSession();
@@ -35,7 +35,7 @@ public class ElementControl {
 	}
 	
 	
-	private static ArrayList<Element> getElementsByCategory(Category category){
+	private static ArrayList<Element> getElementsByCategory(Category category) throws ConnectionDBException{
 		ArrayList<Element> elements = null; 
 		
 		Session session = ConnectionDB.getSession();

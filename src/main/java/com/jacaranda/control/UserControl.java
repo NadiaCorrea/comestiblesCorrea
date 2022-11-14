@@ -16,11 +16,11 @@ public class UserControl {
 		
 	}
 	
-	private static User getUserByUserName(String userName) {
+	private static User getUserByUserName(String userName) throws ConnectionDBException {
 		User user = null;
+		Session session = ConnectionDB.getSession();
 		
 		try {
-			Session session = ConnectionDB.getSession();
 			Query<User> query = session.createQuery("SELECT u FROM com.jacaranda.model.User u WHERE u.userName LIKE '" +  userName + "'");
 			user = query.getSingleResult();
 			
@@ -31,7 +31,7 @@ public class UserControl {
 		return user;		
 	}
 
-	public static User getUser(int id) {
+	public static User getUser(int id) throws ConnectionDBException {
 		User result = null;
 		
 		Session session = ConnectionDB.getSession();
@@ -40,7 +40,7 @@ public class UserControl {
 		return result;
 	}
 	
-	public static ArrayList<User> getUsers() {
+	public static ArrayList<User> getUsers() throws ConnectionDBException {
 		ArrayList<User> users = null; 
 		
 		Session session = ConnectionDB.getSession();
@@ -52,7 +52,7 @@ public class UserControl {
 	}
 	
 	public static User addUser(String userName, String password, String name, String lastname, LocalDateTime dob, char sex,
-			boolean admin) throws UserControlException {
+			boolean admin) throws UserControlException, ConnectionDBException {
 		User result = null;
 		Session session = ConnectionDB.getSession();
 		
@@ -78,7 +78,7 @@ public class UserControl {
 		return result;
 	}
 	
-	public static boolean deleteUser(int id) throws UserControlException {
+	public static boolean deleteUser(int id) throws UserControlException, ConnectionDBException {
 		boolean result = false;
 		
 		Session session = ConnectionDB.getSession();
@@ -114,7 +114,5 @@ public class UserControl {
 		}
 		
 		return result;
-	}
-	
-	
+	}	
 }

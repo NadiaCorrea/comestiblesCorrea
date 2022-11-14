@@ -1,7 +1,6 @@
 package com.jacaranda.servlet;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
@@ -117,7 +116,7 @@ public class SignInServlet extends HttpServlet {
 			}
 	
 		} catch (Exception e) {
-			response.getWriter().append(HTML_ERROR1 + "<h3>Ha ocurrido un error inesperado. Contacte con el administrador.</h3>" + HTML_ERROR2);
+			response.getWriter().append(HTML_ERROR1 + "<h3>Ha ocurrido un error inesperado. "+ e.getMessage() +". Contacte con el administrador.</h3>" + HTML_ERROR2);
 		}
 	}
 

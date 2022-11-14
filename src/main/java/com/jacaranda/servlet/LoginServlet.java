@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import com.jacaranda.control.ConnectionDBException;
 import com.jacaranda.control.ElementControl;
 import com.jacaranda.control.UserControl;
 import com.jacaranda.control.UserControlException;
@@ -112,13 +113,13 @@ public class LoginServlet extends HttpServlet {
 
 			} else {
 				response.getWriter()
-				.append(HTML_ERROR1 + "<h3>La contrase&ntildea no puede estar vac&iacute;a.</h3>" + HTML_ERROR2);
+				.append(HTML_ERROR1 + "<h3>Ni el usuario ni la contrase&ntildea pueden estar vac&iacute;os.</h3>" + HTML_ERROR2);
 			}
 
-		} catch (UserControlException e) {
+		} catch (UserControlException | ConnectionDBException e) {
 
 			response.getWriter()
-					.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
+					.append(HTML_ERROR1 + "<h3>" + e.getMessage() +"</h3>" + HTML_ERROR2);
 		}
 
 	}
