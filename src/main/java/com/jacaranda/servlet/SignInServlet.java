@@ -91,7 +91,7 @@ public class SignInServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
 		String lastname = request.getParameter("lastname");
-		LocalDateTime dob = LocalDateTime.parse(request.getParameter("dob") + "T01:00:00");
+		LocalDateTime dob = LocalDateTime.parse(request.getParameter("dob") + "T03:00:00");
 		char sex = request.getParameter("sex").charAt(0);
 		boolean admin = false;
 		
