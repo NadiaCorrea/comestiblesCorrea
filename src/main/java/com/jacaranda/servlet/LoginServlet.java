@@ -83,8 +83,7 @@ public class LoginServlet extends HttpServlet {
 				//If user exist then creates the session and shows the list of products depending on the role
 				if (user != null) {
 					HttpSession session = request.getSession(true);
-					session.setAttribute("user", user.getName());
-					session.setAttribute("admin", user.isAdmin());
+					session.setAttribute("user", user);
 					
 					List<Element> elements = ElementControl.getElements(); 
 					String htmlResult = "<table><tr><td>Nombre de producto</td><td>Descripción</td><td>Precio</td><td>Categoria</td></tr>";
@@ -102,7 +101,7 @@ public class LoginServlet extends HttpServlet {
 								+ "</tr>";
 					}
 					
-					response.getWriter().append(HTML_SUCCESS1 + "<h1>Bienvenido " + session.getAttribute("user")
+					response.getWriter().append(HTML_SUCCESS1 + "<h1>Bienvenido " + user.getName()
 							+ "</h1>\r\n"
 							+ getAddButton(user.isAdmin()) //it only shows this option if the user has an admin role
 							+ "</div>" 
