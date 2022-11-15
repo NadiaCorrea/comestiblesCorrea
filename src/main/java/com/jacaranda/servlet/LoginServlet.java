@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 			+ "    <meta charset=\"UTF-8\">\r\n" + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
 			+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 			+ "    <title>Confirmación de acceso</title>\r\n"
-			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/listProducts.css\">\r\n" + "</head>\r\n"
+			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/productsList.css\">\r\n" + "</head>\r\n"
 			+ "<body>\r\n" + "\r\n" + "    <div class=\"site_wrap\">\r\n" + "        <div class=\"title\">\r\n"
 			+ "        <h1>Comestibles Correa</h1>\r\n" + "        </div>\r\n" + "        <div class=\"session\">";
 
@@ -67,20 +67,24 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	//It gets the parameters(userName and password) sent on the form
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("password");
 
 		try {
-
+			//if the parameters aren't empty the password is encrypted
 			if (!password.isBlank() && !userName.isBlank()) {
-				String encriptedPassword = DigestUtils.md5Hex(password);
+				String encryptedPassword = DigestUtils.md5Hex(password);
 				response.setContentType("text/html");
-
-				User user = UserControl.checkUser(userName, encriptedPassword);
-
+				
+				//It check if the user exist
+				User user = UserControl.checkUser(userName, encryptedPassword);
+				
+				//If user exist then creates the session and shows the list of products depending on the role
 				if (user != null) {
 					HttpSession session = request.getSession(true);
 					session.setAttribute("user", user.getName());
+					session.setAttribute("admin", user.isAdmin());
 					
 					List<Element> elements = ElementControl.getElements(); 
 					String htmlResult = "<table><tr><td>Nombre de producto</td><td>Descripción</td><td>Precio</td><td>Categoria</td></tr>";
@@ -100,7 +104,7 @@ public class LoginServlet extends HttpServlet {
 					
 					response.getWriter().append(HTML_SUCCESS1 + "<h1>Bienvenido " + session.getAttribute("user")
 							+ "</h1>\r\n"
-							+ getAddButton(user.isAdmin())
+							+ getAddButton(user.isAdmin()) //it only shows this option if the user has an admin role
 							+ "</div>" 
 							+ "<div class = table>"
 							+ htmlResult 

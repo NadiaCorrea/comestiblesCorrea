@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/index.css">
 </head>
 <body>
-
+<% session.invalidate();  %>
 <div class="site_wrap">
 	<div class="title">
 	<h1>Comestibles Correa</h1>
