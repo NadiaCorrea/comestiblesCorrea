@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Añadir Producto</title>
+<link rel="stylesheet" type="text/css" href="CSS/addProduct.css">
 </head>
 <body>
 
@@ -37,8 +38,7 @@
 			<input type="number" id="price" name="price" step="0.01" required><br>
 			
 			<label for="category">Categoría: </label><br>
-			<select name="category" id="category">
-		
+			<select name="category" id="category" required>			
 			<%
 				List<Category> categories = CategoryControl.getCategories();
 				
@@ -52,12 +52,12 @@
 					
 				<% }%>
 			
-			</select>
+			</select><br>
 			<button type="submit" id="addProduct">Añadir</button>
 		</form>
 	</div>
 	<div class="back">
-         <a href="LoginServlet">Volver</a>
+         <a href="LoginServlet" class="button">Volver</a>
      </div>
 	<div class= "footer">
 	<p>&copy; Comestibles Correa</p>
@@ -66,10 +66,9 @@
 		
 		
 		
-	<%}else{
-		//mostar error no te estas logueado		
-		System.out.println("nope");
-	}
+	<%}else{%>
+		<jsp:forward page="error.jsp"></jsp:forward>
+	<%}
 	%>
 	
 

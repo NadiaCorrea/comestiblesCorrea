@@ -92,15 +92,17 @@ public class SignInServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String lastname = request.getParameter("lastname");
 //		Time is added as the date of birth only returns a date
-		LocalDateTime dob = LocalDateTime.parse(request.getParameter("dob") + "T00:00:00");
-		char sex = request.getParameter("sex").charAt(0);
+		String dobString = request.getParameter("dob");
+		String sexString = request.getParameter("sex");
 		boolean admin = false;
 		
 	
 		response.setContentType("text/html");
 		
 		try {
-			if (!password.isBlank()) {
+			if (userName != null && !userName.isBlank() && password != null && !password.isBlank() && name != null && !name.isBlank() && lastname != null && !lastname.isBlank() && dobString != null && !dobString.isBlank() && sexString != null && !sexString.isBlank() ) {
+				LocalDateTime dob = LocalDateTime.parse(dobString + "T00:00:00");
+				char sex = sexString.charAt(0);
 				String encriptedPassword = DigestUtils.md5Hex(password);
 				
 				User newUser = UserControl.addUser(userName, encriptedPassword, name, lastname, dob, sex, admin);
@@ -113,11 +115,11 @@ public class SignInServlet extends HttpServlet {
 					response.getWriter().append(HTML_ERROR1 + "<h3>El usuario ya existe.</h3>" + HTML_ERROR2);
 				}
 			} else {
-				response.getWriter().append(HTML_ERROR1 + "<h3>La contrase&ntilde;a no puede estar vac&iacute;a.</h3>" + HTML_ERROR2);
+				response.getWriter().append(HTML_ERROR1 + "<h3>No se puden dejar campos vacíos o nulos.</h3>" + HTML_ERROR2);
 			}
 	
 		} catch (Exception e) {
-			response.getWriter().append(HTML_ERROR1 + "<h3>Ha ocurrido un error inesperado. "+ e.getMessage() +". Contacte con el administrador.</h3>" + HTML_ERROR2);
+			response.getWriter().append(HTML_ERROR1 + "<h3>Ha ocurrido un error inesperado. "+ e.getMessage() +" Contacte con el administrador.</h3>" + HTML_ERROR2);
 		}
 	}
 

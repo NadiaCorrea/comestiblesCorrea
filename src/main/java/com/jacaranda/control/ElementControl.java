@@ -77,6 +77,8 @@ public class ElementControl {
 				session.getTransaction().commit();
 
 				result = newEle;
+			} else {
+				throw new ElementControlException("El producto ya existe en la base de datos.");
 			}
 			
 		} catch (Exception e) {
