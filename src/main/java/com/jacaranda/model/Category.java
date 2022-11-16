@@ -38,6 +38,7 @@ public class Category {
 		super();
 		setName(name);
 		setDescription(description);
+		List<Element> elements = null;
 	}
 
 	public String getName() {
