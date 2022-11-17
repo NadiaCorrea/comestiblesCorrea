@@ -2,11 +2,15 @@ package com.jacaranda.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +26,8 @@ public class User {
 	private LocalDateTime dob;
 	private char sex;
 	private boolean admin;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Sale> sales = new ArrayList<>();
 	
 	/**
 	 * Empty constructor 
@@ -181,6 +187,13 @@ public class User {
 		this.admin = admin;
 	}
 
+	public List<Sale> getSales() {
+		return sales;
+	}
+
+	public void setSales(List<Sale> sales) {
+		this.sales = sales;
+	}
 
 	@Override
 	public int hashCode() {
@@ -200,11 +213,10 @@ public class User {
 		return id == other.id;
 	}
 
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", name=" + name + ", lastname="
-				+ lastname + ", dob=" + dob + ", sex=" + sex + ", admin=" + admin + "]";
+				+ lastname + ", dob=" + dob + ", sex=" + sex + ", admin=" + admin + ", sales=" + sales + "]";
 	}
-	
+
 }

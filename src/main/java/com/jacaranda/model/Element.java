@@ -1,10 +1,16 @@
 package com.jacaranda.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +25,8 @@ public class Element {
 	@ManyToOne
 	@JoinColumn(name="category")
 	private Category category;
+	@OneToMany(mappedBy = "element", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Sale> sales = new ArrayList<>();
 	
 	/**
 	 * Empty constructor
@@ -33,7 +41,7 @@ public class Element {
 	 * @param description - description of the product 
 	 * @param price - price of the product 
 	 * @param category - category of the product 
-	 * @throws ElementException in case the prameters don't meet the specifications
+	 * @throws ElementException in case the parameters don't meet the specifications
 	 */
 
 	public Element(String name, String description, double price, Category category) throws ElementException {
@@ -109,7 +117,37 @@ public class Element {
 	public void setEleId(int eleId) {
 		this.eleId = eleId;
 	}
-	
+
+	public List<Sale> getSales() {
+		return sales;
+	}
+
+	public void setSales(List<Sale> sales) {
+		this.sales = sales;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(eleId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Element other = (Element) obj;
+		return eleId == other.eleId;
+	}
+
+	@Override
+	public String toString() {
+		return "Element [eleId=" + eleId + ", name=" + name + ", description=" + description + ", price=" + price
+				+ ", category=" + category + ", sales=" + sales + "]";
+	}
 	
 	
 }

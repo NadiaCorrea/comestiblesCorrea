@@ -1,9 +1,31 @@
 package com.jacaranda.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "SALES")
+@IdClass (SaleId.class)
 public class Sale {
-	private SaleId id;
+	@Id
+	@ManyToOne
+	@JoinColumn (name = "ele_id", insertable = false, updatable = false)
+	private Element element;
+	@Id
+	@ManyToOne
+	@JoinColumn (name = "us_id", insertable = false, updatable = false)
+	private User user;
+	@Id
+	@Column (name = "salesDate", insertable = false, updatable = false)
+	private LocalDateTime salesDate;
 	private int quantity;
 	private double price;
 	
@@ -11,19 +33,37 @@ public class Sale {
 		
 	}
 
-	public Sale(SaleId id, int quantity, double price) throws SaleException {
+	public Sale(Element element, User user, LocalDateTime salesDate, int quantity, double price) throws SaleException {
 		super();
-		setId(id);
+		setElement(element);
+		setUser(user);
+		setSalesDate(salesDate);
 		setQuantity(quantity);
 		setPrice(price);
 	}
 	
-	public SaleId getId() {
-		return id;
+	public Element getElement() {
+		return element;
 	}
 
-	public void setId(SaleId id) {
-		this.id = id;
+	public void setElement(Element element) {
+		this.element = element;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public LocalDateTime getSalesDate() {
+		return salesDate;
+	}
+
+	public void setSalesDate(LocalDateTime salesDate) {
+		this.salesDate = salesDate;
 	}
 
 	public int getQuantity() {
@@ -50,13 +90,28 @@ public class Sale {
 		}
 	}
 
-	
-	
-	
-}
+	@Override
+	public int hashCode() {
+		return Objects.hash(element, salesDate, user);
+	}
 
-//`ele_id` int(11) NOT NULL,
-//`us_id` int(11) NOT NULL,
-//`salesDate` datetime NOT NULL,
-//`quantity` int(11) DEFAULT NULL,
-//`price` double DEFAULT NULL
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sale other = (Sale) obj;
+		return Objects.equals(element, other.element) && Objects.equals(salesDate, other.salesDate)
+				&& Objects.equals(user, other.user);
+	}
+
+	@Override
+	public String toString() {
+		return "Sale [quantity=" + quantity + ", price=" + price + ", element=" + element + ", user=" + user
+				+ ", salesDate=" + salesDate + "]";
+	}
+
+}
