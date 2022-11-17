@@ -210,7 +210,7 @@ CREATE TABLE comestiblesCorrea.`USERS` (
   `password` varchar(32) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `lastname` varchar(100) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
+  `dob` datetime DEFAULT NULL,
   `sex` char(1) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -220,11 +220,10 @@ CREATE TABLE comestiblesCorrea.`USERS` (
 --
 
 INSERT INTO comestiblesCorrea.`USERS` (`us_id`, `userName`, `password`, `name`, `lastname`, `dob`, `sex`, `admin`) VALUES
-(1, 'Nash', 'a9b69ae1a4c3491d2dbf5eae94f5c041', 'Nadia', 'Correa', '1984-09-29', 'M', 0),
-(2, 'Pcaro', '487b5d4113bb0b62a558679bd761594f', 'Pedro', 'Caro', '1982-09-03', 'H', 0),
-(3, 'Charlottie', '0719c04224aa7d436156124c06f5c304', 'Charlotte', 'Caro', '2011-02-08', 'M', 0),
-(4, 'NCorrea', '2a78ea6363a06081e3874cad1d926240', 'Nadia', 'Morales', '1984-09-29', 'M', 1);
-
+(1, 'Nash', 'a9b69ae1a4c3491d2dbf5eae94f5c041', 'Nadia', 'Correa', '1984-09-29 00:00:00', 'M', 0),
+(2, 'Pcaro', '487b5d4113bb0b62a558679bd761594f', 'Pedro', 'Caro', '1982-09-03 00:00:00', 'H', 0),
+(3, 'Charlottie', '0719c04224aa7d436156124c06f5c304', 'Charlotte', 'Caro', '2011-02-08 00:00:00', 'M', 0),
+(4, 'NCorrea', '2a78ea6363a06081e3874cad1d926240', 'Nadia', 'Morales', '1984-09-29 00:00:00', 'M', 1),
 --
 -- Índices para tablas volcadas
 --
@@ -241,7 +240,7 @@ ALTER TABLE comestiblesCorrea.`CATEGORIES`
 ALTER TABLE comestiblesCorrea.`ELEMENTS`
   ADD PRIMARY KEY (`ele_id`),
   ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `fk_elements` (`category`);
+  ADD KEY `fk_elements` (`category`) USING BTREE;
 
 --
 -- Indices de la tabla `SALES`
