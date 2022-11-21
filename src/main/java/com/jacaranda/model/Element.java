@@ -65,6 +65,7 @@ public class Element {
 			this.stock = stock;
 		}
 		
+		
 	}
 
 	public String getName() {

@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 	}
 	
 	
-	//to be able to send the form
+	//to be able to send the form 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doPost(req, resp);

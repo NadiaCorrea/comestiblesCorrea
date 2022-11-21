@@ -66,7 +66,7 @@ public class AddProductServlet extends HttpServlet {
 			
 			try {
 			
-				// if fields aren't null or empty
+				// if fields aren't null or empty 
 				if (name != null && !name.isBlank() && description != null && !description.isBlank() && priceString != null && !priceString.isBlank() && stockString != null && !stockString.isBlank() && categoryString != null && !categoryString.isBlank()) {
 					double price = Double.parseDouble(priceString);
 					int stock = Integer.parseInt(stockString);

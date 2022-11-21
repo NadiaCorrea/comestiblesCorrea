@@ -19,7 +19,7 @@ import com.jacaranda.model.User;
  */
 @WebServlet(description = "servlet for signning in", urlPatterns = { "/SignInServlet" })
 public class SignInServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 	
 	private static final String HTML_SUCCESS1 = "<!DOCTYPE html>\r\n"
 			+ "<html lang=\"en\">\r\n"

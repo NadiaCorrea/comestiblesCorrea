@@ -9,7 +9,6 @@ import org.hibernate.query.Query;
 import com.jacaranda.model.Category;
 import com.jacaranda.model.Element;
 
-
 public class ElementControl {
 
 	public ElementControl() {
