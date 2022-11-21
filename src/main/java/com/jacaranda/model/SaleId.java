@@ -22,8 +22,6 @@ public class SaleId implements Serializable{
 		return element;
 	}
 
-
-
 	public void setElement(int element) {
 		this.element = element;
 	}

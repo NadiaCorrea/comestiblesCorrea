@@ -57,28 +57,41 @@ public class AddProductServlet extends HttpServlet {
 		User loggedUser = (User) se.getAttribute("user");
 		if (loggedUser != null && loggedUser.isAdmin()) {
 			// get parameters
+		
 			String name = request.getParameter("name");
 			String description = request.getParameter("description");
-			double price = Double.parseDouble(request.getParameter("price"));
-			int id = Integer.parseInt(request.getParameter("category"));
-
+			String priceString = request.getParameter("price");
+			String stockString = request.getParameter("stock");
+			String categoryString = request.getParameter("category");
+			
 			try {
-				// get category to add new product
-				if (id != -1) {
-					Category cat = CategoryControl.getCategory(id);
-					Element newEle = ElementControl.addElement(name, description, price, cat);
-					// if added show success message
-					response.sendRedirect("LoginServlet");
-				}else {
-					response.getWriter().append(HTML_ERROR1 + "La categor&iacute;a no puede quedar vac&iacute;a." + HTML_ERROR2);
+			
+				// if fields aren't null or empty
+				if (name != null && !name.isBlank() && description != null && !description.isBlank() && priceString != null && !priceString.isBlank() && stockString != null && !stockString.isBlank() && categoryString != null && !categoryString.isBlank()) {
+					double price = Double.parseDouble(priceString);
+					int stock = Integer.parseInt(stockString);
+					int id = Integer.parseInt(categoryString);
+					
+					// get category to add new product
+					if (id != -1) {
+						Category cat = CategoryControl.getCategory(id);
+						Element newEle = ElementControl.addElement(name, description, price, stock, cat);
+						// if added show success message
+						response.sendRedirect("LoginServlet");
+					}else {
+						response.getWriter().append(HTML_ERROR1 + "La categor&iacute;a no puede quedar vac&iacute;a." + HTML_ERROR2);
+					}
+				} else {
+					//error the fields aren't correct
+					response.getWriter().append(HTML_ERROR1 + "Los campos introducidos no son correctos." + HTML_ERROR2);
 				}
-
+			
 			} catch (Exception e) {
 				// if no added show error message
 				response.getWriter().append(HTML_ERROR1 + e.getMessage() + HTML_ERROR2);
 
 			}
-
+			
 		} else {
 			response.getWriter().append(HTML_ERROR1 + "No te has autenticado." + HTML_ERROR3);
 		}

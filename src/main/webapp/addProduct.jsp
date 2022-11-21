@@ -37,6 +37,9 @@
 			<label for="price">Precio: </label><br>
 			<input type="number" id="price" name="price" step="0.01" required><br>
 			
+			<label for="stock">Stock: </label><br>
+			<input type="number" id="stock" name="stock" step="1" required><br>
+			
 			<label for="category">Categoría: </label><br>
 			<select name="category" id="category" required>			
 			<%

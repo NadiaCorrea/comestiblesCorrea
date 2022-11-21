@@ -22,6 +22,7 @@ public class Element {
 	private String name;
 	private String description;
 	private double price;
+	private int stock;
 	@ManyToOne
 	@JoinColumn(name="category")
 	private Category category;
@@ -44,12 +45,26 @@ public class Element {
 	 * @throws ElementException in case the parameters don't meet the specifications
 	 */
 
-	public Element(String name, String description, double price, Category category) throws ElementException {
+	public Element(String name, String description, double price, int stock, Category category) throws ElementException {
 		super();
 		setName(name);
 		setDescription(description);
 		setPrice(price);
+		setStock(stock);
 		setCategory(category);
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) throws ElementException {
+		if(stock < 0) {
+			throw new ElementException("El stock no puede ser menor que 0.");
+		} else {
+			this.stock = stock;
+		}
+		
 	}
 
 	public String getName() {
@@ -146,8 +161,8 @@ public class Element {
 	@Override
 	public String toString() {
 		return "Element [eleId=" + eleId + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", category=" + category + ", sales=" + sales + "]";
+				+ ", stock=" + stock + ", category=" + category + ", sales=" + sales + "]";
 	}
-	
+
 	
 }

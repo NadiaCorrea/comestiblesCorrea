@@ -96,7 +96,6 @@ public class SignInServlet extends HttpServlet {
 		String sexString = request.getParameter("sex");
 		boolean admin = false;
 		
-	
 		response.setContentType("text/html");
 		
 		try {

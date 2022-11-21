@@ -62,7 +62,7 @@ public class ElementControl {
 		
 	}
 	
-	public static Element addElement(String name, String description, double price, Category category) throws ConnectionDBException, ElementControlException {
+	public static Element addElement(String name, String description, double price, int stock, Category category) throws ConnectionDBException, ElementControlException {
 		Element result = null;
 		Session session = ConnectionDB.getSession();
 		
@@ -71,7 +71,7 @@ public class ElementControl {
 			
 			if(existElement == null) {
 				
-				Element newEle = new Element(name, description, price, category);
+				Element newEle = new Element(name, description, price, stock, category);
 				session.getTransaction().begin();
 				session.save(newEle);
 				session.getTransaction().commit();
