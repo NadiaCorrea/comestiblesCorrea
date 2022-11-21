@@ -18,6 +18,7 @@ import com.jacaranda.control.ElementControl;
 import com.jacaranda.control.UserControl;
 import com.jacaranda.control.UserControlException;
 import com.jacaranda.model.Element;
+import com.jacaranda.model.ShoppingCart;
 import com.jacaranda.model.User;
 
 /**
@@ -105,6 +106,7 @@ public class LoginServlet extends HttpServlet {
 					if (user != null) {
 						HttpSession session = request.getSession(true);
 						session.setAttribute("user", user);
+						session.setAttribute("shoppingCart", new ShoppingCart());
 						//show list of products
 						listElements(response, user);
 						
