@@ -130,7 +130,7 @@ public class LoginServlet extends HttpServlet {
 
 	private void listElements(HttpServletResponse response, User user) throws ConnectionDBException, IOException {
 		List<Element> elements = ElementControl.getElements(); 
-		String htmlResult = "<table><tr><td>Nombre de producto</td><td>Descripci&oacute;n</td><td>Precio</td><td>Categor&iacute;a</td></tr>";
+		String htmlResult = "<table><tr><td>Nombre de producto</td><td>Descripci&oacute;n</td><td>Precio</td><td>Stock</td><td>Categor&iacute;a</td><td>Elementos a comprar</td></tr>";
 		
 		Iterator<Element> iterator = elements.iterator();
 		
@@ -141,7 +141,12 @@ public class LoginServlet extends HttpServlet {
 					+ "<td>"+ iElement.getName() +"</td>"
 					+ "<td>"+ iElement.getDescription()+"</td>"
 					+ "<td>"+ iElement.getPrice()+"</td>"
+					+ "<td>"+ iElement.getStock()+"</td>"
 					+ "<td>"+ iElement.getCategory().getName()+"</td>"
+					+ "<td><form>"
+					+ "Cantidad: <input type=\"number\" class=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" required>"
+					+ "<button type=\"submit\">añadir</button>"
+					+ "</form></td>"
 					+ "</tr>";
 		}
 		
