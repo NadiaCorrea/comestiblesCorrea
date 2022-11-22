@@ -145,9 +145,14 @@ public class LoginServlet extends HttpServlet {
 					+ "<td>"+ iElement.getPrice()+"</td>"
 					+ "<td>"+ iElement.getStock()+"</td>"
 					+ "<td>"+ iElement.getCategory().getName()+"</td>"
-					+ "<td><form>"
-					+ "Cantidad: <input type=\"number\" class=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" required>"
-					+ "<button type=\"submit\">añadir</button>"
+					+ "<td><form action=\"addingItem\" method=\"post\">"
+					+ "Cantidad: <input type=\"number\" name=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" min=\"0\" max=\""
+					+ iElement.getStock()
+					+ "\" required>"
+					+ "<input id=\"elementId\" name=\"elementId\" type=\"hidden\" value=\""
+					+ iElement.getEleId()
+					+ "\">"
+					+ "<button type=\"submit\">A&ntilde;adir</button>"
 					+ "</form></td>"
 					+ "</tr>";
 		}
@@ -158,6 +163,8 @@ public class LoginServlet extends HttpServlet {
 				+ getAddButton(user.isAdmin()) //it only shows this option if the user has an admin role
 				+ "</div><div class=\"delbut\">"
 				+ "<a href=\"index.jsp\" class=\"button close\">Cerrar sesi&oacute;n</a>"
+				+ "</div><div class=\"shopbut\">"
+				+ "<a href=\"Shopping\" class=\"button shop\">Comprar</a>"
 				+ "</div>"
 				+ "<div class = table>"
 				+ htmlResult 

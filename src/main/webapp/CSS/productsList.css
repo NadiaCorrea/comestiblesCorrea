@@ -17,7 +17,7 @@ body{
     grid-template-areas: 
     "title title title title title title"
     "session session session session session session"
-    "delbut delbut delbut addbut addbut addbut"
+    "delbut delbut shopbut shopbut addbut addbut"
     "table table table table table table"
     "footer footer footer footer footer footer";
 	
@@ -59,6 +59,16 @@ body{
 	margin-bottom: 10px;
 	margin-right:20px;
 } 
+
+.shopbut{
+	display:grid;
+	grid-area: shopbut;
+	text-align: center;
+	background-color: #FEF9E7; 
+	color: black;
+	margin-bottom: 10px;
+	margin-right:20px;
+}
 
 .session h1{
 	text-align: left;
