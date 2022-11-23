@@ -32,7 +32,12 @@ public class addingItem extends HttpServlet {
 			+ "        <h1>Comestibles Correa</h1>\r\n" + "        </div>\r\n" + "        <div class=\"error\">";
 
 	private static final String HTML_ERROR2 = "</div>\r\n" + "        <div class=\"back\">\r\n"
-			+ "            <a href=\"index.jsp\" class=\"button\">Volver al inicio</a>\r\n" + "        </div>\r\n"
+			+ "            <a href=\"LoginServlet\" class=\"button\">Volver</a>\r\n" + "        </div>\r\n"
+			+ "        <div class= \"footer\">\r\n" + "        <p>&copy; Comestibles Correa</p>\r\n"
+			+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>";
+	
+	private static final String HTML_ERROR3 = "</div>\r\n" + "        <div class=\"back\">\r\n"
+			+ "            <a href=\"index.jsp\" class=\"button\">Volver</a>\r\n" + "        </div>\r\n"
 			+ "        <div class= \"footer\">\r\n" + "        <p>&copy; Comestibles Correa</p>\r\n"
 			+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>";
 	
@@ -58,6 +63,7 @@ public class addingItem extends HttpServlet {
 			String quantityS = request.getParameter("itemQuantity");
 			String elementIdS = request.getParameter("elementId");
 			
+			//if parameter are correct adds item to shopping cart
 			if (quantityS != null && !quantityS.isBlank() && elementIdS != null && !elementIdS.isBlank()) {
 				
 				try {
@@ -67,11 +73,22 @@ public class addingItem extends HttpServlet {
 					Element ele = ElementControl.getElement(eleId);
 					
 					if (ele.getStock() >= quantity) {
+				
+						// if item already exists it only changes the quenatity
+						CartItem itemExist = cart.getItemByElementId(eleId);
+						if(itemExist != null) {
+							itemExist.setQuantity(quantity);
+						} else {
+							//adds the products to the shopping cart if it doesn't exist
+							CartItem newItem = new CartItem(loggedUser.getId(), ele.getEleId(), quantity, ele.getPrice() , LocalDateTime.now()); 
+							cart.getRequestedItems().add(newItem);
+						}
 						
-						CartItem newItem = new CartItem(loggedUser.getId(), ele.getEleId(), quantity, ele.getPrice() , LocalDateTime.now()); 
-						cart.getRequestedItems().add(newItem);
+						//total items in the shopping cart
+						System.out.println(cart.getRequestedItems().size());
 						
-						//volver al listado de productos 
+						//when added redirect to list of products
+						response.sendRedirect("LoginServlet");
 						
 					} else {
 						//Error: quantity cannot be greater than stock 
@@ -93,7 +110,7 @@ public class addingItem extends HttpServlet {
 			
 		} else {
 			response.getWriter()
-			.append(HTML_ERROR1 + "<h3>No estás autenticado</h3>" + HTML_ERROR2);
+			.append(HTML_ERROR1 + "<h3>No estás autenticado</h3>" + HTML_ERROR3);
 		}
 	
 	}

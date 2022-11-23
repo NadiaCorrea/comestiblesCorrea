@@ -166,6 +166,9 @@ public class LoginServlet extends HttpServlet {
 				+ "</div><div class=\"shopbut\">"
 				+ "<a href=\"Shopping\" class=\"button shop\">Comprar</a>"
 				+ "</div>"
+				+ "<div class=\"historybut\">"
+				+ "<a href=\"Historial\" class=\"button hist\">Historial</a>"
+				+ "</div>"
 				+ "<div class = table>"
 				+ htmlResult 
 				+ "</table>"
