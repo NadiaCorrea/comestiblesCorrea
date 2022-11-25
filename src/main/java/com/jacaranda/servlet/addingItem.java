@@ -74,7 +74,7 @@ public class addingItem extends HttpServlet {
 					
 					if (ele.getStock() >= quantity) {
 				
-						// if item already exists it only changes the quenatity
+						// if item already exists it only changes the quantity
 						CartItem itemExist = cart.getItemByElementId(eleId);
 						if(itemExist != null) {
 							itemExist.setQuantity(quantity);
@@ -97,6 +97,7 @@ public class addingItem extends HttpServlet {
 					}
 					
 				} catch (Exception e) {
+					//Error: in case there an Exception in parsing or getting the element or item 
 					response.getWriter()
 					.append(HTML_ERROR1 + "<h3>"+ e.getMessage() +"</h3>" + HTML_ERROR2);
 				}
