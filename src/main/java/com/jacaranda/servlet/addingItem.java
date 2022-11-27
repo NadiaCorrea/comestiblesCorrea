@@ -83,7 +83,8 @@ public class addingItem extends HttpServlet {
 							CartItem newItem = new CartItem(loggedUser.getId(), ele.getEleId(), quantity, ele.getPrice() , LocalDateTime.now()); 
 							cart.getRequestedItems().add(newItem);
 						}
-						
+					
+//						se.setAttribute("shoppingCart", cart);
 						//total items in the shopping cart
 						System.out.println(cart.getRequestedItems().size());
 						

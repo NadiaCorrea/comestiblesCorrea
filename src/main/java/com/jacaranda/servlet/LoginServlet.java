@@ -77,7 +77,6 @@ public class LoginServlet extends HttpServlet {
 		//If session is opened
 		HttpSession se = request.getSession();
 		User loggedUser = (User) se.getAttribute("user");
-		ShoppingCart cart = (ShoppingCart) se.getAttribute("shoppingCart");
 		if (loggedUser != null) {
 			
 			try {

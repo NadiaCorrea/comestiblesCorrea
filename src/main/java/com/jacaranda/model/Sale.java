@@ -46,24 +46,37 @@ public class Sale {
 		return element;
 	}
 
-	public void setElement(Element element) {
-		this.element = element;
+	public void setElement(Element element) throws SaleException {
+		if(element != null) {
+			this.element = element;
+		} else {
+			throw new SaleException("El producto no puede ser nulo.");
+		}
 	}
 
 	public User getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(User user) throws SaleException {
+		if (user == null) {
+			throw new SaleException("El usuario no puede ser nulo.");
+		} else {
+			this.user = user;
+		}
+		
 	}
 	
 	public LocalDateTime getSalesDate() {
 		return salesDate;
 	}
 
-	public void setSalesDate(LocalDateTime salesDate) {
-		this.salesDate = salesDate;
+	public void setSalesDate(LocalDateTime salesDate) throws SaleException {
+		if(salesDate == null) {
+			throw new SaleException("La fecha no puede ser nula.");
+		} else {
+			this.salesDate = salesDate;
+		}	
 	}
 
 	public int getQuantity() {
@@ -71,7 +84,7 @@ public class Sale {
 	}
 
 	public void setQuantity(int quantity) throws SaleException {
-		if(quantity <0) {
+		if(quantity < 0) {
 			throw new SaleException("La cantidad no puede ser menor de 0.");
 		} else {
 			this.quantity = quantity;

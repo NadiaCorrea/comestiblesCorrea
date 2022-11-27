@@ -22,8 +22,12 @@ public class SaleId implements Serializable{
 		return element;
 	}
 
-	public void setElement(int element) {
-		this.element = element;
+	public void setElement(int element) throws SaleIdException {
+		if(element <= 0) {
+			throw new SaleIdException("El código del producto no puede ser igual o menor que 0.");
+		} else {
+			this.element = element;
+		}
 	}
 
 
@@ -34,8 +38,12 @@ public class SaleId implements Serializable{
 
 
 
-	public void setUser(int user) {
-		this.user = user;
+	public void setUser(int user) throws SaleIdException {
+		if(user <= 0) {
+			throw new SaleIdException("El código del usuario no puede ser igual o menor que 0.");
+		} else {
+			this.user = user;
+		}
 	}
 
 
