@@ -34,7 +34,7 @@ public class SaleControl {
 		ArrayList<Sale> result = null; 
 		
 		Session session = ConnectionDB.getSession();
-		Query<Sale> query = session.createQuery("SELECT s FROM com.jacaranda.model.Sale WHERE us_id = '" +  user.getId() + "' ORDER BY salesDate DESC");
+		Query<Sale> query = session.createQuery("SELECT s FROM com.jacaranda.model.Sale s WHERE us_id = '" +  user.getId() + "' ORDER BY salesDate DESC", Sale.class);
 		result  = (ArrayList<Sale>)query.getResultList();
 		
 		return result ;

@@ -112,12 +112,12 @@ public class LoginServlet extends HttpServlet {
 						
 					} else {
 						response.getWriter()
-								.append(HTML_ERROR1 + "<h3>El usuario o la contraseña no son válidos.</h3>" + HTML_ERROR2);
+								.append(HTML_ERROR1 + "<h3>El usuario o la contrase&ntilde;a no son válidos.</h3>" + HTML_ERROR2);
 					}
 
 				} else {
 					response.getWriter()
-					.append(HTML_ERROR1 + "<h3>Ni el usuario ni la contrase&ntildea pueden estar vac&iacute;os.</h3>" + HTML_ERROR2);
+					.append(HTML_ERROR1 + "<h3>Ni el usuario ni la contrase&ntilde;a pueden estar vac&iacute;os.</h3>" + HTML_ERROR2);
 				}
 
 			} catch (UserControlException | ConnectionDBException e) {
