@@ -102,7 +102,7 @@ public class ShoppingServlet extends HttpServlet {
 
 	//Iterates the shopping cart and prints the list of products added to the cart
 	private void listCartItems(HttpServletResponse response, User user, ShoppingCart cart) throws ConnectionDBException, IOException {
-		String htmlResult = "<table><tr><td>Nombre de producto</td><td>Cantidad</td><td>Precio</td><td>Total</td><td>Acciones</td></tr>";
+		String htmlResult = "<table><tr><td>Nombre de producto</td><td>Cantidad</td><td>Precio</td><td>Total</td><td colspan=\"2\">Acciones</td></tr>";
 		Iterator<CartItem> iterator = cart.getRequestedItems().iterator();
 		double priceToPay = 0;
 		
@@ -117,6 +117,19 @@ public class ShoppingServlet extends HttpServlet {
 					+ "<td>"+ iItem.getQuantity() +"</td>"
 					+ "<td>"+ iItem.getPrice() +"</td>"
 					+ "<td>"+ totalPerProduct +"</td>"
+					
+					+ "<td><form action=\"UpdateCartItemServlet\" method=\"post\">"
+					+ "<input type=\"number\" name=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" min=\"0\" max=\""
+					+ iElement.getStock()
+					+ "\" required>"
+					+ "<input name=\"elementId\" type=\"hidden\" value=\"" + iItem.getElementId() +"\">"
+					+ "<button type=\"submit\">Modificar cantidad</button>"
+					+ "</form></td>"
+					
+					+ "<td><form action=\"DeleteCartItemServlet\" method=\"post\">"
+					+ "<input name=\"elementId\" type=\"hidden\" value=\"" + iItem.getElementId() +"\">"
+					+ "<button type=\"submit\">Eliminar</button>"
+					+ "</form></td>"
 					+ "</tr>";
 		}
 		

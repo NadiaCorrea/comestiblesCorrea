@@ -95,7 +95,7 @@ public class LoginServlet extends HttpServlet {
 
 			try {
 				//if the parameters aren't empty the password is encrypted
-				if (!password.isBlank() && !userName.isBlank()) {
+				if (password != null && !password.isBlank() && userName != null && !userName.isBlank()) {
 					String encryptedPassword = DigestUtils.md5Hex(password);
 					response.setContentType("text/html");
 					
@@ -157,7 +157,7 @@ public class LoginServlet extends HttpServlet {
 					+ "</tr>";
 		}
 		
-		response.getWriter().append(HTML_SUCCESS1 + "<h1>Bienvenido " + user.getName()
+		response.getWriter().append(HTML_SUCCESS1 + "<h1>Sesi&oacute;n: " + user.getName()
 				+ "</h1>"
 				+ "</div> <div class=\"addbut\">" 
 				+ getAddButton(user.isAdmin()) //it only shows this option if the user has an admin role

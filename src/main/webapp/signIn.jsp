@@ -27,7 +27,7 @@
 
 <div class="site_wrap">
 	<div class="title">
-	<h1>Comestibles Correa - Registro</h1>
+		<h1>Comestibles Correa - Registro</h1>
 	</div>
 	<div class="form">
 		<form action="SignInServlet" method="post">

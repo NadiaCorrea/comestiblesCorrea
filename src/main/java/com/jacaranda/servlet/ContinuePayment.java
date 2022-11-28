@@ -29,12 +29,12 @@ public class ContinuePayment extends HttpServlet {
 			+ "    <meta charset=\"UTF-8\">\r\n" + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
 			+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 			+ "    <title>Confirmaci&oacute;n de compra</title>\r\n"
-			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/productsList.css\">\r\n" + "</head>\r\n"
+			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/shoppingDone.css\">\r\n" + "</head>\r\n"
 			+ "<body>\r\n" + "\r\n" + "    <div class=\"site_wrap\">\r\n" + "        <div class=\"title\">\r\n"
 			+ "        <h1>Comestibles Correa</h1>\r\n" + "        </div>\r\n" + "        <div class=\"session\">";
 
 	private static final String HTML_SUCCESS2 = "</div>\r\n" + "        <div class=\"back\">\r\n"
-			+ "            <a href=\"LoginServlet\" class=\"button\">Volver</a>\r\n" + "        </div>\r\n"
+			+ "            <a href=\"LoginServlet\">Volver</a>\r\n" + "        </div>\r\n"
 			+ "        <div class= \"footer\">\r\n" + "        <p>&copy; Comestibles Correa</p>\r\n"
 			+ "        </div>\r\n" + "    </div>\r\n" + "</body>\r\n" + "</html>";
 	
@@ -89,7 +89,10 @@ public class ContinuePayment extends HttpServlet {
 					//iterate shopping cart to add products to sale table in DB
 					SaleControl.addSale(cart.getRequestedItems());
 					se.setAttribute("shoppingCart", new ShoppingCart());
-					response.getWriter().append(HTML_SUCCESS1 + "<h3>Gracias por su compra.</h3>"  + HTML_SUCCESS2);
+					response.getWriter().append(HTML_SUCCESS1 + "<h1>Sesi&oacute;n: " + loggedUser.getName()
+					+ "</h1>"
+					+ "</div><div class=\"delbut\"><a href=\"index.jsp\" class=\"button close\">Cerrar sesi&oacute;n</a></div>"
+					+ "<div class=\"message\"><h3>Gracias por su compra.</h3>" + HTML_SUCCESS2);
 					
 					
 				} catch (Exception e) {
