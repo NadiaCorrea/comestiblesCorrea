@@ -28,7 +28,7 @@ public class ShoppingServlet extends HttpServlet {
 			+ "    <meta charset=\"UTF-8\">\r\n" + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n"
 			+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 			+ "    <title>Carrito de la compra</title>\r\n"
-			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/productsList.css\">\r\n" + "</head>\r\n"
+			+ "    <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS/shopping.css\">\r\n" + "</head>\r\n"
 			+ "<body>\r\n" + "\r\n" + "    <div class=\"site_wrap\">\r\n" + "        <div class=\"title\">\r\n"
 			+ "        <h1>Comestibles Correa</h1>\r\n" + "        </div>\r\n" + "        <div class=\"session\">";
 
@@ -137,7 +137,7 @@ public class ShoppingServlet extends HttpServlet {
 				+ "<td>Total a Pagar</td>"
 				+ "<td>"+ priceToPay +"</td>"
 				+ "</tr>";
-		response.getWriter().append(HTML_SUCCESS1 + "<h1>Bienvenido " + user.getName()
+		response.getWriter().append(HTML_SUCCESS1 + "<h1>Sesi&oacute;n: " + user.getName()
 		+ "</h1>"
 		+ "</div><div class=\"delbut\">"
 		+ "<a href=\"index.jsp\" class=\"button close\">Cerrar sesi&oacute;n</a>"
@@ -145,9 +145,10 @@ public class ShoppingServlet extends HttpServlet {
 		+ "<div class = table>"
 		+ htmlResult 
 		+ "</table>"
-		+ "</div><div class=\"transaction\">"
-		+ "<a href=\"ContinuePayment\" class=\"button pay\">Pagar</a>"
-		+ "<a href=\"LoginServlet\" class=\"button cancel\">Cancelar</a>"
+		+ "</div><div class=\"pay\">"
+		+ "<a href=\"ContinuePayment\" class=\"button\">Pagar</a>"
+		+ "</div><div class=\"cancel\">"
+		+ "<a href=\"LoginServlet\" class=\"button\">Cancelar</a>"
 		+ "</div>"
 		+ HTML_SUCCESS2);
 	

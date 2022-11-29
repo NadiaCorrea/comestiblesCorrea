@@ -8,6 +8,10 @@ body{
 	
 }
 
+a {
+	text-decoration: none;
+ }
+
 .site_wrap{
 	background-color: #FEF9E7; 
 	height: 100vh;
@@ -99,7 +103,7 @@ button:hover{
     font-weight:bold;
     border-radius:5px;
     cursor:pointer;
-    font-size: 1em;
+    font-size: 2em;
     text-align: center;
 }
 

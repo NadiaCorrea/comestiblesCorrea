@@ -13,6 +13,10 @@
 	<div class="title">
 	<h1>Comestibles Correa</h1>
 	</div>
+	<div class="image">
+        <img src="IMAGES/cesta.png" alt="Shopping basket">
+    </div>
+	
 	<div class="form">
 		<form action="LoginServlet" method="post">
 			

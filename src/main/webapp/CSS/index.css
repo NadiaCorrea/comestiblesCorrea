@@ -7,18 +7,18 @@ body{
 	font-style: oblique;
 	
 }
-
+ 
 .site_wrap{
 	background-color: #FEF9E7; 
 	height: 100vh;
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 2fr;
     grid-template-rows: 1fr 1.5fr 1fr 0.2fr;
     grid-template-areas: 
-    "title"
-    "form"
-    "signIn"
-    "footer";
+    "title image"
+    "form form"
+    "signIn signIn"
+    "footer footer";
 	
 }
 
@@ -33,6 +33,20 @@ body{
 
 .title h1{
 	padding-top: 3%;
+	padding-left:5%;
+	text-align: center;
+}
+
+.image{
+	display: grid;
+	grid-area: image;
+	background-color: #FEF9E7; 
+}
+
+.image img{
+	padding-top: 3%;
+	height: 150px;
+	object-fit: cover;
 }
 
 .form{
