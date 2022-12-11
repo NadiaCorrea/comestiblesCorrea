@@ -60,7 +60,7 @@ INSERT INTO comestiblesCorrea.`CATEGORIES` (`cat_id`, `name`, `description`) VAL
 -- Estructura de tabla para la tabla `ELEMENTS`
 --
 
-CREATE TABLE `ELEMENTS` (
+CREATE TABLE comestiblesCorrea.`ELEMENTS` (
   `ele_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE `ELEMENTS` (
 -- Volcado de datos para la tabla `ELEMENTS`
 --
 
-INSERT INTO `ELEMENTS` (`ele_id`, `name`, `description`, `price`, `stock`, `category`) VALUES
+INSERT INTO comestiblesCorrea.`ELEMENTS` (`ele_id`, `name`, `description`, `price`, `stock`, `category`) VALUES
 (1, 'Asparagus - White, Canned', 'platea dictumst', 3.09, 10, 1),
 (2, 'Food Colouring - Blue', 'nisl duis bibendum', 2.6, 5, 10),
 (3, 'Soup - Campbells, Chix Gumbo', 'ultrices erat tortor sollicitudin mi', 3.6, 9, 8),
@@ -264,7 +264,7 @@ INSERT INTO comestiblesCorrea.`USERS` (`us_id`, `userName`, `password`, `name`, 
 (1, 'Nash', 'a9b69ae1a4c3491d2dbf5eae94f5c041', 'Nadia', 'Correa', '1984-09-29 00:00:00', 'M', 0),
 (2, 'Pcaro', '487b5d4113bb0b62a558679bd761594f', 'Pedro', 'Caro', '1982-09-03 00:00:00', 'H', 0),
 (3, 'Charlottie', '0719c04224aa7d436156124c06f5c304', 'Charlotte', 'Caro', '2011-02-08 00:00:00', 'M', 0),
-(4, 'NCorrea', '2a78ea6363a06081e3874cad1d926240', 'Nadia', 'Morales', '1984-09-29 00:00:00', 'M', 1),
+(4, 'NCorrea', '2a78ea6363a06081e3874cad1d926240', 'Nadia', 'Morales', '1984-09-29 00:00:00', 'M', 1);
 --
 -- Índices para tablas volcadas
 --
