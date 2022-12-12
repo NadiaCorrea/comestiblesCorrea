@@ -146,7 +146,7 @@ public class LoginServlet extends HttpServlet {
 					+ "<td>"+ iElement.getStock()+"</td>"
 					+ "<td>"+ iElement.getCategory().getName()+"</td>"
 					+ "<td><form action=\"addingItem\" method=\"post\">"
-					+ "Cantidad: <input type=\"number\" name=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" min=\"0\" max=\""
+					+ "Cantidad: <input type=\"number\" name=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" min=\"1\" max=\""
 					+ iElement.getStock()
 					+ "\" required>"
 					+ "<input id=\"elementId\" name=\"elementId\" type=\"hidden\" value=\""

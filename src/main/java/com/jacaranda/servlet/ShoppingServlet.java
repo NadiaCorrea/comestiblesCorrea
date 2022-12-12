@@ -119,7 +119,7 @@ public class ShoppingServlet extends HttpServlet {
 					+ "<td>"+ totalPerProduct +"</td>"
 					
 					+ "<td><form action=\"UpdateCartItemServlet\" method=\"post\">"
-					+ "<input type=\"number\" name=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" min=\"0\" max=\""
+					+ "<input type=\"number\" name=\"itemQuantity\" id=\"itemQuantity\" step=\"1\" min=\"1\" max=\""
 					+ iElement.getStock()
 					+ "\" required>"
 					+ "<input name=\"elementId\" type=\"hidden\" value=\"" + iItem.getElementId() +"\">"
